@@ -30,7 +30,7 @@ public class U1A3_LeeCookREDO{
         JTextArea answerTextArea = new JTextArea();
         answerTextArea.setEditable(false);
         JButton exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(_ -> System.exit(0));
         JLabel amountOwingLabel = new JLabel("Amount Owing:");
         JTextField amountOwingTextField = new JTextField();
         JLabel changeLabel = new JLabel("Change:");

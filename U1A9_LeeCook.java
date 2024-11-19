@@ -56,7 +56,7 @@ public class U1A9_LeeCook {
         addButton.setFont(font); // set font
         addButton.setBounds(450, 115, 90, 30); // set position and size
         window.add(addButton); // add button to window
-        addButton.addActionListener(e -> { // action when button is clicked
+        addButton.addActionListener(_ -> { // action when button is clicked
             String inputValue = input.getText(); // get text from input field
             if (intCheck(inputValue)) { // check if input is an integer
                 int num = Integer.parseInt(inputValue); // convert string to integer
@@ -87,7 +87,7 @@ public class U1A9_LeeCook {
         removeButton.setFont(font); // set font
         removeButton.setBounds(550, 115, 130, 30); // set position and size
         window.add(removeButton); // add button to window
-        removeButton.addActionListener(e -> { // action when button is clicked
+        removeButton.addActionListener(_ -> { // action when button is clicked
             String inputValue = input.getText(); // get text from input field
             if (intCheck(inputValue)) { // check if input is an integer
                 int num = Integer.parseInt(inputValue); // convert string to integer
@@ -121,7 +121,7 @@ public class U1A9_LeeCook {
         listButton.setFont(font); // set font
         listButton.setBounds(500, 180, 100, 30); // set position and size
         window.add(listButton); // add button to window
-        listButton.addActionListener(e -> { // action when button is clicked
+        listButton.addActionListener(_ -> { // action when button is clicked
             StringBuilder builder = new StringBuilder();// create string builder for output
             StringBuilder builder2 = new StringBuilder(); // create string builder for output
             builder2.append("[");
@@ -143,7 +143,7 @@ public class U1A9_LeeCook {
         sumAllButton.setFont(font); // set font
         sumAllButton.setBounds(350, 270, 150, 30); // set position and size
         window.add(sumAllButton); // add button to window
-        sumAllButton.addActionListener(e -> { // action when button is clicked
+        sumAllButton.addActionListener(_ -> { // action when button is clicked
             int sum = 0; // to hold the total sum
             for (int i = 0; i < count; i++) { // loop through the list
                 sum += list[i]; // add each number to sum
@@ -156,7 +156,7 @@ public class U1A9_LeeCook {
         sumEvenButton.setFont(font); // set font
         sumEvenButton.setBounds(350, 330, 160, 30); // set position and size
         window.add(sumEvenButton); // add button to window
-        sumEvenButton.addActionListener(e -> { // action when button is clicked
+        sumEvenButton.addActionListener(_ -> { // action when button is clicked
             int sum = 0; // to hold the sum of even numbers
             StringBuilder builder = new StringBuilder(); // create output builder
             for (int i = 0; i < count; i++) { // loop through the list
@@ -173,7 +173,7 @@ public class U1A9_LeeCook {
         sumOddButton.setFont(font); // set font
         sumOddButton.setBounds(350, 390, 150, 30); // set position and size
         window.add(sumOddButton); // add button to window
-        sumOddButton.addActionListener(e -> { // action when button is clicked
+        sumOddButton.addActionListener(_ -> { // action when button is clicked
             int sum = 0; // to hold the sum of odd numbers
             StringBuilder builder = new StringBuilder(); // create output builder
             for (int i = 0; i < count; i++) { // loop through the list
@@ -190,7 +190,7 @@ public class U1A9_LeeCook {
         exitButton.setFont(font); // set font
         exitButton.setBounds(650, 270, 100, 30); // set position and size
         window.add(exitButton); // add button to window
-        exitButton.addActionListener(e -> System.exit(0)); // close app on click
+        exitButton.addActionListener(_ -> System.exit(0)); // close app on click
 
         // making the window visible
         window.setVisible(true); // show the window

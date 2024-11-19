@@ -66,12 +66,12 @@ public class U1A10_LeeCook extends JFrame {
         add(passingButton); // add button
         
         // action to exit the program
-        exitButton.addActionListener(e -> {
+        exitButton.addActionListener(_ -> {
             System.exit(0); // exit
         });
 
         // action to add a student
-        addButton.addActionListener(e -> {
+        addButton.addActionListener(_ -> {
             if (studentCount > 29) { // check limit
                 JOptionPane.showMessageDialog(this, "Array cap reached!"); // show alert
                 return;
@@ -101,7 +101,7 @@ public class U1A10_LeeCook extends JFrame {
         });
 
         // action to calculate student average
-        studentAverageButton.addActionListener(e -> {
+        studentAverageButton.addActionListener(_ -> {
             for (String[] student : studentMarks) {
                 if ((student[0] + student[1]).toLowerCase().equals((firstName.getText() + lastName.getText()).toLowerCase())) {
                     float average = 0; // initialize average
@@ -117,7 +117,7 @@ public class U1A10_LeeCook extends JFrame {
         });
 
         // action to calculate course average
-        courseAverageButton.addActionListener(e -> {
+        courseAverageButton.addActionListener(_ -> {
             float totalAverage = 0; // initialize total average
             for (String[] student : studentMarks) {
                 if (student[0] == null) {
@@ -137,7 +137,7 @@ public class U1A10_LeeCook extends JFrame {
         });
 
         // action to list all students
-        listButton.addActionListener(e -> {
+        listButton.addActionListener(_ -> {
             String output = ""; // initialize output string
             for (String[] student : studentMarks) {
                 if (student[0] == null) { // stop if no more students
@@ -152,7 +152,7 @@ public class U1A10_LeeCook extends JFrame {
         });
 
         // action to count and list passing students
-        passingButton.addActionListener(e ->{
+        passingButton.addActionListener(_ ->{
             StringBuilder builder = new StringBuilder(); // create string builder for output
             int counter = 0;
 

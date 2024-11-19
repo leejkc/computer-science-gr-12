@@ -63,7 +63,7 @@ public class App extends JFrame {
         add(listButton); // add "list" button to the frame
 
         // action listener for the "add" button
-        addButton.addActionListener(unused -> {
+        addButton.addActionListener(_ -> {
             String year = null;
             try{
                 year = startDate.getText().split("/")[2]; // extract the year from the start date input
@@ -131,7 +131,7 @@ public class App extends JFrame {
         });
 
         // action listener for the "remove" button
-        removeButton.addActionListener(unused -> {
+        removeButton.addActionListener(_ -> {
             // search for employee by id and remove
             for (String line : EmployeeID.txtReader()) {
                 String currentID = line.split(",")[0]; // extract id from line
@@ -145,7 +145,7 @@ public class App extends JFrame {
         });
 
         // action listener for the "list" button
-        listButton.addActionListener(unused -> {
+        listButton.addActionListener(_ -> {
             // display all employee records in the text area
             String outputString = "";
             for (String line : EmployeeID.txtReader()) {

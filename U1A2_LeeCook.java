@@ -23,7 +23,7 @@ public class U1A2_LeeCook{
         JTextArea answerTextArea = new JTextArea();
         answerTextArea.setEditable(false);
         JButton exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(_ -> System.exit(0));
 
         window.add(amountLabel);
         window.add(amountTextField);

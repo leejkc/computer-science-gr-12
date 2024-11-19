@@ -58,7 +58,7 @@ public class U1A5_LeeCook {
         window.add(confirmButton);
 
         JButton exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(_ -> System.exit(0));
         exitButton.setBounds(300, 140, 90, 70);
         window.add(exitButton);
 
