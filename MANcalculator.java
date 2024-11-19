@@ -1,10 +1,12 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class MANcalculator extends JFrame {
     final java.awt.Font font = new java.awt.Font("Source Code Pro", java.awt.Font.BOLD, 13);
+    private final JTextField firstTerm, secondTerm, thirdTerm;
 
     MANcalculator(){
         setSize(600, 600); // set window size
@@ -18,19 +20,29 @@ public class MANcalculator extends JFrame {
         title.setBounds(30, 20, 300, 30);
         add(title);
         
-        createLabelAndTextField("First Term: ", 30, 100);
-        createLabelAndTextField("Second Term: ", 30, 150);
-        createLabelAndTextField("Third Term: ", 30, 200);
+        firstTerm = createLabelAndTextField("First Term: ", 30, 100);
+        secondTerm = createLabelAndTextField("Second Term: ", 30, 150);
+        thirdTerm = createLabelAndTextField("Third Term: ", 30, 200);
 
         JButton submit = new JButton("Submit");
         submit.setBounds(30, 250, 80, 30);
         add(submit);
         submit.addActionListener(_ -> {
-            //
+            try {
+                // parse to check if int
+                Integer.parseInt(firstTerm.getText());
+                Integer.parseInt(secondTerm.getText());
+                Integer.parseInt(thirdTerm.getText());
+            } catch (NumberFormatException _) { // underscore because not calling e (unused lambda)
+                JOptionPane.showMessageDialog(this, "submit");
+            }
         });
 
         setVisible(true); // show the window
     }
+
+    // make submit button method here? or write in button listener
+
     private JTextField createLabelAndTextField(String labelText, int x, int y) {
         JLabel label = new JLabel(labelText); // create label
         label.setBounds(x, y, 130, 30); // set position
@@ -43,14 +55,6 @@ public class MANcalculator extends JFrame {
         add(textField); // add to frame
         
         return textField; // return text field
-    }
-    public static boolean intCheck(String checkMeString){
-        try {
-            Integer.parseInt(checkMeString); // try parseing
-            return true; // if parsing works -> return true
-        } catch (Exception ex) {
-            return false; // if parsing doesnt work / error -> then false
-        }
     }
     public static void main(String[] args){
         new MANcalculator(); // start MANcalculator function
