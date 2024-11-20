@@ -33,6 +33,7 @@ public class MANcalculator extends JFrame {
                 Integer.parseInt(firstTerm.getText());
                 Integer.parseInt(secondTerm.getText());
                 Integer.parseInt(thirdTerm.getText());
+
             } catch (NumberFormatException _) { // underscore because not calling e (unused lambda)
                 JOptionPane.showMessageDialog(this, "submit");
             }
@@ -40,8 +41,6 @@ public class MANcalculator extends JFrame {
 
         setVisible(true); // show the window
     }
-
-    // make submit button method here? or write in button listener
 
     private JTextField createLabelAndTextField(String labelText, int x, int y) {
         JLabel label = new JLabel(labelText); // create label
