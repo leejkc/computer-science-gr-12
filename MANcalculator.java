@@ -9,7 +9,7 @@ public class MANcalculator extends JFrame {
     private final JTextField firstTerm, secondTerm, thirdTerm;
 
     MANcalculator(){
-        setSize(600, 600); // set window size
+        setSize(400, 500); // set window size
         setTitle("M. A. N. Calculator!"); // set title
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit app on close
         setLayout(null); // set manager to null for custom placement
@@ -30,16 +30,44 @@ public class MANcalculator extends JFrame {
         submit.addActionListener(_ -> {
             try {
                 // parse to check if int
-                Integer.parseInt(firstTerm.getText());
-                Integer.parseInt(secondTerm.getText());
-                Integer.parseInt(thirdTerm.getText());
+                int first = Integer.parseInt(firstTerm.getText());
+                int second = Integer.parseInt(secondTerm.getText());
+                int third = Integer.parseInt(thirdTerm.getText());
 
+                // if int put into method
+                submitAction(first, second, third);
             } catch (NumberFormatException _) { // underscore because not calling e (unused lambda)
-                JOptionPane.showMessageDialog(this, "submit");
+                JOptionPane.showMessageDialog(this, "Please enter a int representing the\ncoefficent for each term");
+                return;
             }
         });
 
         setVisible(true); // show the window
+    }
+
+    private String submitAction(int first, int second, int third){
+        // StringBuilder builder = new StringBuilder();
+
+        int m = first*third; // what muliplies to
+        int a = second; // what adds to
+
+        int divisor = 1;
+        while (true){
+            int result = m/divisor;
+            int guess = result + divisor;
+            if (guess == a){
+                System.out.println(result);
+                System.out.println(divisor);
+                break;
+            }
+            if (divisor > m){
+                JOptionPane.showMessageDialog(this, "Your trinomial has no result!");
+                return new String();
+            }
+            divisor++;
+        }
+
+        return new String();
     }
 
     private JTextField createLabelAndTextField(String labelText, int x, int y) {
