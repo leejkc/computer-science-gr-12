@@ -1,5 +1,6 @@
 package U2A2_LeeCook;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -8,7 +9,7 @@ public class App extends JFrame {
     final java.awt.Font font = new java.awt.Font("Consolas", java.awt.Font.BOLD, 15); // font settings
     final java.awt.Color textBackgroudColor = new java.awt.Color(213, 234, 245); // background color for text fields
 
-    // final JTextField
+    // final JCheckBox rectangle, square, triangle, circle, doughnut, hexagon, parallelogram;
 
     App(){
         setSize(700,600); // set window size
@@ -18,40 +19,42 @@ public class App extends JFrame {
         getContentPane().setBackground(new java.awt.Color(125, 180, 209)); // background color of the content pane
         setLayout(null); // absolute positioning layout
         
-        // TODO insert gui elements and action listeners here
+        JLabel header = new JLabel("Tile Price Calculator"); // create a header label
+        header.setFont(new java.awt.Font("Consolas", java.awt.Font.BOLD, 30)); // set font for header
+        header.setBounds(30, 40, 450, 50); // set position of the header label
+        add(header); // add header to the frame
 
         setVisible(true);
     }
     
     /**
-     * Creates a JLabel and a JTextField, arranges them on the screen, and returns the JTextField.
+     * Creates a JLabel and a JCheckBox, arranges them on the screen, and returns the JCheckBox.
      * <p>
-     * This method creates a label with the specified text and a corresponding text field positioned next to it.
-     * It sets the label's text and the text field's font and background color, which are predefined globally.
-     * The method also ensures that both components are added to the frame.
+     * This method creates a check box and a label together and displays them on screen.
+     * This method also sets font and background color.
      * </p>
      *
      * @param labelText the text to display on the JLabel.
      * @param x the x position of the label.
      * @param y the y position of the label.
-     * @return the created {@code JTextField}, which is positioned next to the label.
+     * @return the created {@code JCheckBox}, which is positioned next to the label.
      * @see JLabel
-     * @see JTextField
+     * @see JCheckBox
      */
-    private JTextField createElements(String labelText, int x, int y) {
+    private JCheckBox createElements(String labelText, int x, int y) {
+        JCheckBox checkBox = new JCheckBox(); // create check box
+        checkBox.setBounds(x, y, 150, 20); // set position of check box
+        checkBox.setFont(font); // set font for the check box
+        checkBox.setBackground(textBackgroudColor); // set background color for the check box
+        add(checkBox); // add check box to the frame
+
         JLabel label = new JLabel(labelText); // create label
-        label.setBounds(x, y, 130, 20); // set position of label
+        label.setBounds(x + 40, y, 130, 20); // set position of label
         label.setFont(font); // set font for the label
         label.setBackground(textBackgroudColor); // set background color for the label
         add(label); // add label to the frame
-        
-        JTextField textField = new JTextField(); // create text field
-        textField.setBounds(x + 130, y - 2, 150, 20); // set position of text field
-        textField.setFont(font); // set font for the text field
-        textField.setBackground(textBackgroudColor); // set background color for the text field
-        add(textField); // add text field to the frame
-        
-        return textField; // return the created text field
+
+        return checkBox; // return the created text field
     }
 
     public static void main(String[] args){
