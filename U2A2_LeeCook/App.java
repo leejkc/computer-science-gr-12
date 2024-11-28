@@ -4,22 +4,25 @@ package U2A2_LeeCook;
 // addActionListener might have to be "_" (underscore) or "e" if "unused" doesnt work.
 // "unused" tells the code i dont want to call "e" later but some jdk either support keyword "unused" or "_". 
 // some newer or really old jdk models use "_" instead because "unused" is a keyword for something else, some use "unused" because "_" is a reserved keyword for soemthing else. 
+// the open oracle jdk usually supports both.
 // if neither work, can use "e" but a little faster on my end if i use "unused". -lee
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class App extends JFrame {
     private final java.awt.Font font = new java.awt.Font("Consolas", java.awt.Font.BOLD, 15); // font settings
     private final java.awt.Color textBackgroudColor = new java.awt.Color(213, 234, 245); // background color for text fields
 
     private final JCheckBox rectangle, square, triangle, circle, doughnut, hexagon, parallelogram; // JCheckBox for each shape
+    private final JTextField rectangleTextField, squareTextField, triangleTextField, circleTextField, doughnutTextField, hexagonTextField, parallelogramTextField; // JTextField for each shape
 
     App(){
         setSize(700,600); // set window size
-        setTitle("Employee Records App"); // set window title
+        setTitle("Tile Price Calculator"); // set window title
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close operation for the frame
         setResizable(false); // make window non-resizable
         getContentPane().setBackground(new java.awt.Color(125, 180, 209)); // background color of the content pane
@@ -31,7 +34,7 @@ public class App extends JFrame {
         header.setBounds(30, 40, 450, 50);
         add(header);
 
-        // checkboxes and labels for elements
+        // creates checkboxes and labels
         rectangle = createElements("Rectangle", 30, 80);
         square = createElements("Square", 30, 100);
         triangle = createElements("triangle", 30, 120);
@@ -39,6 +42,14 @@ public class App extends JFrame {
         doughnut = createElements("Doughnut", 30, 160);
         hexagon = createElements("Hexagon", 30, 180);
         parallelogram = createElements("Parallelogram", 30, 200);
+        // creates text fields
+        rectangleTextField = createElements(190, 80);
+        squareTextField = createElements(190, 100);
+        triangleTextField = createElements(190, 120);
+        circleTextField = createElements(190, 140);
+        doughnutTextField = createElements(190, 160);
+        hexagonTextField = createElements(190, 180);
+        parallelogramTextField = createElements(190, 200);        
 
         // buttons to set all check boxes to checked or not
         JButton allShapesOn = new JButton("Select All");
@@ -63,10 +74,6 @@ public class App extends JFrame {
     
     /**
      * Creates a JLabel and a JCheckBox, arranges them on the screen, and returns the JCheckBox.
-     * <p>
-     * This method creates a check box and a label together and displays them on screen.
-     * This method also sets font and background color.
-     * </p>
      *
      * @param labelText the text to display on the JLabel.
      * @param x the x position of the label.
@@ -76,7 +83,7 @@ public class App extends JFrame {
      * @see JCheckBox
      */
     private JCheckBox createElements(String labelText, int x, int y) {
-        JCheckBox checkBox = new JCheckBox();
+        JCheckBox checkBox = new JCheckBox(); // create check box
         checkBox.setBounds(x, y, 20, 20);
         checkBox.setBackground(textBackgroudColor);
         add(checkBox);
@@ -87,7 +94,25 @@ public class App extends JFrame {
         label.setBackground(textBackgroudColor);
         add(label);
 
-        return checkBox; // return the created text field
+        return checkBox; // return the created check box
+    }
+
+    /**
+     * Creates a JTextField, arranges them on screen, and returns the JTextField.
+     * 
+     * @param x the x position of the text field
+     * @param y the y position of the text field
+     * @return the created {@code JTextField}
+     * @see JTextField
+     */
+    private JTextField createElements(int x, int y){
+        JTextField textField = new JTextField(); // create text field
+        textField.setBounds(x, y, 100, 20);
+        textField.setFont(font);
+        textField.setBackground(textBackgroudColor);
+        add(textField);
+
+        return textField; // return the created text field
     }
 
     /**
