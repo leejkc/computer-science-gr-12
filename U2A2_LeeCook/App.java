@@ -31,7 +31,7 @@ public class App extends JFrame {
         // create a header label
         JLabel header = new JLabel("Tile Price Calculator"); 
         header.setFont(new java.awt.Font("Consolas", java.awt.Font.BOLD, 30));
-        header.setBounds(30, 40, 450, 50);
+        header.setBounds(30, 20, 450, 50);
         add(header);
 
         // creates checkboxes and labels
@@ -49,7 +49,18 @@ public class App extends JFrame {
         circleTextField = createElements(190, 140);
         doughnutTextField = createElements(190, 160);
         hexagonTextField = createElements(190, 180);
-        parallelogramTextField = createElements(190, 200);        
+        parallelogramTextField = createElements(190, 200);   
+        // create length label 
+        JLabel length = new JLabel("Length:");
+        length.setBounds(190, 60, 80, 20);
+        length.setFont(font);
+        add(length);
+        // create height label 
+        JLabel height = new JLabel("Height:");
+        height.setBounds(260, 60, 80, 20);
+        height.setFont(font);
+        add(height);
+
 
         // buttons to set all check boxes to checked or not
         JButton allShapesOn = new JButton("Select All");
@@ -91,7 +102,6 @@ public class App extends JFrame {
         JLabel label = new JLabel(labelText); // create label
         label.setBounds(x + 40, y, 130, 20);
         label.setFont(font);
-        label.setBackground(textBackgroudColor);
         add(label);
 
         return checkBox; // return the created check box
@@ -107,7 +117,7 @@ public class App extends JFrame {
      */
     private JTextField createElements(int x, int y){
         JTextField textField = new JTextField(); // create text field
-        textField.setBounds(x, y, 100, 20);
+        textField.setBounds(x, y, 60, 20);
         textField.setFont(font);
         textField.setBackground(textBackgroudColor);
         add(textField);
