@@ -5,12 +5,13 @@ package U2A2_LeeCook;
 // "unused" tells the code i dont want to call "e" later but some jdk either support keyword "unused" or "_". 
 // some newer or really old jdk models use "_" instead because "unused" is a keyword for something else, some use "unused" because "_" is a reserved keyword for soemthing else. 
 // the open oracle jdk usually supports both.
-// if neither work, can use "e" but a little faster on my end if i use "unused". -lee
+// if neither work, can use "e" but a little faster on my end if i use "_". -lee
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class App extends JFrame {
@@ -18,7 +19,8 @@ public class App extends JFrame {
     private final java.awt.Color textBackgroudColor = new java.awt.Color(213, 234, 245); // background color for text fields
 
     private final JCheckBox rectangle, square, triangle, circle, doughnut, hexagon, parallelogram; // JCheckBox for each shape
-    private final JTextField rectangleTextField, squareTextField, triangleTextField, circleTextField, doughnutTextField, hexagonTextField, parallelogramTextField; // JTextField for each shape
+    private final String rectangleTextField, squareTextField, triangleTextField, circleTextField, doughnutTextField, hexagonTextField, parallelogramTextField; // JTextField for each shape
+    private final JTextArea output;
 
     App(){
         setSize(700,600); // set window size
@@ -73,11 +75,23 @@ public class App extends JFrame {
         allShapesOff.setFont(font);
         allShapesOff.setBackground(textBackgroudColor);
         add(allShapesOff);
-        allShapesOn.addActionListener(unused -> { // if ON (show all) button pressed, send true to function
+        allShapesOn.addActionListener(_ -> { // if ON (show all) button pressed, send true to function
             selectAllOrNoneFunction(true);
         });
-        allShapesOff.addActionListener(unused -> { // if OFF (show none) button pressed, send true to function
+        allShapesOff.addActionListener(_ -> { // if OFF (show none) button pressed, send true to function
             selectAllOrNoneFunction(false);
+        });
+
+        // TODO: create input button that checks if checkbox is clicked and nothing in it and then inputs shit into the Jtextarea
+        JButton submit = new JButton("Submit!");
+        submit.setBounds(170, 240, 130, 20);
+        submit.setFont(font);
+        submit.setBackground(textBackgroudColor);
+        add(submit);
+        submit.addActionListener(_ ->{
+            if(rectangle.isSelected() == true){
+                //
+            }
         });
 
         setVisible(true);
@@ -108,21 +122,30 @@ public class App extends JFrame {
     }
 
     /**
-     * Creates a JTextField, arranges them on screen, and returns the JTextField.
+     * Creates a JTextField, arranges them on screen, and returns string containing both JTextFields.
+     * The width of the text fields are 60. 
+     * The second text field is 10 units to the right.
      * 
-     * @param x the x position of the text field
-     * @param y the y position of the text field
-     * @return the created {@code JTextField}
+     * @param x the x position of the 1st text field
+     * @param y the y position of the 1st text field
+     * @return the created {@code String} containing {@code textfield1} and {@code textField2}
      * @see JTextField
      */
-    private JTextField createElements(int x, int y){
-        JTextField textField = new JTextField(); // create text field
-        textField.setBounds(x, y, 60, 20);
-        textField.setFont(font);
-        textField.setBackground(textBackgroudColor);
-        add(textField);
+    private String createElements(int x, int y){
+        JTextField textField1 = new JTextField(); // create text field
+        textField1.setBounds(x, y, 60, 20);
+        textField1.setFont(font);
+        textField1.setBackground(textBackgroudColor);
+        add(textField1);
+        JTextField textField2 = new JTextField(); // create text field
+        textField2.setBounds(x+70, y, 60, 20);
+        textField2.setFont(font);
+        textField2.setBackground(textBackgroudColor);
+        add(textField2);
 
-        return textField; // return the created text field
+        String textFields = textField1.getText() + "/" + textField2.getText();
+        System.out.println(textFields);
+        return textFields; // return the created text fields
     }
 
     /**
