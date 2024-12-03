@@ -1,11 +1,26 @@
 package U2A2_LeeCook;
 
-public class Hexagon extends Shape {
-    @Override
-    public double area() {
-        return ((3 * Math.sqrt(3)) / 2) * width * length;
+class Hexagon extends Shape {
+    private double side;
+    private double pricePerUnit;
+
+    public Hexagon(double side, double pricePerUnit) {
+        this.side = side;
+        this.pricePerUnit = pricePerUnit;
     }
-    Hexagon(double price, double length, double width){
-        super(price, length, width);
+
+    @Override
+    public double calculateArea() {
+        return (3 * Math.sqrt(3) / 2) * side * side;
+    }
+
+    @Override
+    public double calculatePrice() {
+        return calculateArea() * pricePerUnit;
+    }
+
+    @Override
+    public String toString() {
+        return "Hexagon: Side = " + side + ", Area = " + calculateArea() + ", Price = $" + calculatePrice();
     }
 }

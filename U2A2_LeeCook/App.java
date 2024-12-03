@@ -1,171 +1,246 @@
 package U2A2_LeeCook;
 
+import java.util.ArrayList;
+
 // note: 
 // addActionListener might have to be "_" (underscore) or "e" if "unused" doesnt work.
-// "unused" tells the code i dont want to call "e" later but some jdk either support keyword "unused" or "_". 
-// some newer or really old jdk models use "_" instead because "unused" is a keyword for something else, some use "unused" because "_" is a reserved keyword for soemthing else. 
-// the open oracle jdk usually supports both.
+// "_" tells the code i dont want to call "e" later but some jdk either support keyword "_" or "unused". 
+// some newer or really old jdk models use "unused" instead because "_" is a keyword for something else, some use "_" because "unused" is a reserved keyword for soemthing else. 
+// the level 23 or higher orcacle openjdk usually supports all and unused is highlighted yellow.
 // if neither work, can use "e" but a little faster on my end if i use "_". -lee
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class App extends JFrame {
-    private final java.awt.Font font = new java.awt.Font("Consolas", java.awt.Font.BOLD, 15); // font settings
-    private final java.awt.Color textBackgroudColor = new java.awt.Color(213, 234, 245); // background color for text fields
+    private ArrayList<Shape> shapes;
+    private JTextArea shapeListArea;
+    private JTextField inputLength, inputWidth, inputBase, inputHeight, inputRadius, inputOuterRadius, inputInnerRadius, inputPrice, inputArea, inputSide, inputDiagonal1, inputDiagonal2;
+    private JButton btnAddRectangle, btnAddParallelogram, btnAddTriangle, btnAddCircle, btnAddDonut, btnAddHexagon, btnAddRhombus, btnShowShapes, btnClearShapes, btnCalculateCost;
 
-    private final JCheckBox rectangle, square, triangle, circle, doughnut, hexagon, parallelogram; // JCheckBox for each shape
-    private final String rectangleTextField, squareTextField, triangleTextField, circleTextField, doughnutTextField, hexagonTextField, parallelogramTextField; // JTextField for each shape
-    private final JTextArea output;
+    public App() {
+        shapes = new ArrayList<>(); // initialize the shapes list
+        // set up the frame
+        setTitle("Tile Price Calculator");
+        setSize(500, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new java.awt.BorderLayout()); // i gave up on making it look reasonable so im using this :) -> easier to write
 
-    App(){
-        setSize(700,600); // set window size
-        setTitle("Tile Price Calculator"); // set window title
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close operation for the frame
-        setResizable(false); // make window non-resizable
-        getContentPane().setBackground(new java.awt.Color(125, 180, 209)); // background color of the content pane
-        setLayout(null); // no positioning layout
-        
-        // create a header label
-        JLabel header = new JLabel("Tile Price Calculator"); 
-        header.setFont(new java.awt.Font("Consolas", java.awt.Font.BOLD, 30));
-        header.setBounds(30, 20, 450, 50);
-        add(header);
+        // create panels
+        JPanel inputPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
+        JPanel displayPanel = new JPanel();
 
-        // creates checkboxes and labels
-        rectangle = createElements("Rectangle", 30, 80);
-        square = createElements("Square", 30, 100);
-        triangle = createElements("triangle", 30, 120);
-        circle = createElements("Circle", 30, 140);
-        doughnut = createElements("Doughnut", 30, 160);
-        hexagon = createElements("Hexagon", 30, 180);
-        parallelogram = createElements("Parallelogram", 30, 200);
-        // creates text fields
-        rectangleTextField = createElements(190, 80);
-        squareTextField = createElements(190, 100);
-        triangleTextField = createElements(190, 120);
-        circleTextField = createElements(190, 140);
-        doughnutTextField = createElements(190, 160);
-        hexagonTextField = createElements(190, 180);
-        parallelogramTextField = createElements(190, 200);   
-        // create length label 
-        JLabel length = new JLabel("Length:");
-        length.setBounds(190, 60, 80, 20);
-        length.setFont(font);
-        add(length);
-        // create height label 
-        JLabel height = new JLabel("Height:");
-        height.setBounds(260, 60, 80, 20);
-        height.setFont(font);
-        add(height);
+        // create textarea for displaying shapes
+        shapeListArea = new JTextArea(10, 30);
+        shapeListArea.setEditable(false);
+        displayPanel.add(new JScrollPane(shapeListArea));
 
+        // create input fields
+        inputLength = new JTextField(5);
+        inputWidth = new JTextField(5);
+        inputBase = new JTextField(5);
+        inputHeight = new JTextField(5);
+        inputRadius = new JTextField(5);
+        inputOuterRadius = new JTextField(5);
+        inputInnerRadius = new JTextField(5);
+        inputPrice = new JTextField(5);
+        inputArea = new JTextField(5);
+        inputSide = new JTextField(5); // for hexagon
+        inputDiagonal1 = new JTextField(5); // for rhombus
+        inputDiagonal2 = new JTextField(5); // for rhombus
 
-        // buttons to set all check boxes to checked or not
-        JButton allShapesOn = new JButton("Select All");
-        allShapesOn.setBounds(30, 240, 130, 20);
-        allShapesOn.setFont(font);
-        allShapesOn.setBackground(textBackgroudColor);
-        add(allShapesOn);
-        JButton allShapesOff = new JButton("Select None");
-        allShapesOff.setBounds(30, 270, 130, 20);
-        allShapesOff.setFont(font);
-        allShapesOff.setBackground(textBackgroudColor);
-        add(allShapesOff);
-        allShapesOn.addActionListener(_ -> { // if ON (show all) button pressed, send true to function
-            selectAllOrNoneFunction(true);
-        });
-        allShapesOff.addActionListener(_ -> { // if OFF (show none) button pressed, send true to function
-            selectAllOrNoneFunction(false);
-        });
+        // add components to input panel
+        inputPanel.setLayout(new java.awt.GridLayout(0, 2));
+        inputPanel.add(new JLabel("Length:"));
+        inputPanel.add(inputLength);
+        inputPanel.add(new JLabel("Width:"));
+        inputPanel.add(inputWidth);
+        inputPanel.add(new JLabel("Base:"));
+        inputPanel.add(inputBase);
+        inputPanel.add(new JLabel("Height:"));
+        inputPanel.add(inputHeight);
+        inputPanel.add(new JLabel("Radius:"));
+        inputPanel.add(inputRadius);
+        inputPanel.add(new JLabel("Outer Radius:"));
+        inputPanel.add(inputOuterRadius);
+        inputPanel.add(new JLabel("Inner Radius:"));
+        inputPanel.add(inputInnerRadius);
+        inputPanel.add(new JLabel("Price per unit:"));
+        inputPanel.add(inputPrice);
+        inputPanel.add(new JLabel("Side (Hexagon):"));
+        inputPanel.add(inputSide);
+        inputPanel.add(new JLabel("Diagonal1 (Rhombus):"));
+        inputPanel.add(inputDiagonal1);
+        inputPanel.add(new JLabel("Diagonal2 (Rhombus):"));
+        inputPanel.add(inputDiagonal2);
 
-        // TODO: create input button that checks if checkbox is clicked and nothing in it and then inputs shit into the Jtextarea
-        JButton submit = new JButton("Submit!");
-        submit.setBounds(170, 240, 130, 20);
-        submit.setFont(font);
-        submit.setBackground(textBackgroudColor);
-        add(submit);
-        submit.addActionListener(_ ->{
-            if(rectangle.isSelected() == true){
-                //
+        // buttons
+        btnAddRectangle = new JButton("Add Rectangle");
+        btnAddParallelogram = new JButton("Add Parallelogram");
+        btnAddTriangle = new JButton("Add Triangle");
+        btnAddCircle = new JButton("Add Circle");
+        btnAddDonut = new JButton("Add Donut");
+        btnAddHexagon = new JButton("Add Hexagon");
+        btnAddRhombus = new JButton("Add Rhombus");
+        btnShowShapes = new JButton("Show Shapes");
+        btnClearShapes = new JButton("Clear Shapes");
+        btnCalculateCost = new JButton("Calculate Total Cost");
+
+        // add button actions
+        btnAddRectangle.addActionListener(_ -> { addRectangle(); }); // add rectangle on button click
+        btnAddParallelogram.addActionListener(_ -> { addParallelogram(); }); // add parallelogram on button click
+        btnAddTriangle.addActionListener(_ -> { addTriangle(); }); // add triangle on button click
+        btnAddCircle.addActionListener(_ -> { addCircle(); }); // add circle on button click
+        btnAddDonut.addActionListener(_ -> { addDonut(); }); // add donut on button click
+        btnAddHexagon.addActionListener(_ -> { addHexagon(); }); // add hexagon on button click
+        btnAddRhombus.addActionListener(_ -> { addRhombus(); }); // add rhombus on button click
+        btnShowShapes.addActionListener(_ -> { showShapes(); }); // show shapes on button click
+        btnClearShapes.addActionListener(_ -> { clearShapes(); }); // clear shapes on button click
+        btnCalculateCost.addActionListener(_ -> { calculateTotalCost(); }); // calculate total cost on button click, get the total
+
+        // add components to button panel
+        buttonPanel.setLayout(new java.awt.GridLayout(0, 1));
+        buttonPanel.add(btnAddRectangle);
+        buttonPanel.add(btnAddParallelogram);
+        buttonPanel.add(btnAddTriangle);
+        buttonPanel.add(btnAddCircle);
+        buttonPanel.add(btnAddDonut);
+        buttonPanel.add(btnAddHexagon);
+        buttonPanel.add(btnAddRhombus);
+        buttonPanel.add(btnShowShapes);
+        buttonPanel.add(btnClearShapes);
+        buttonPanel.add(btnCalculateCost);
+
+        // add panels to frame
+        add(inputPanel, java.awt.BorderLayout.NORTH);
+        add(buttonPanel, java.awt.BorderLayout.CENTER);
+        add(displayPanel, java.awt.BorderLayout.SOUTH);
+    }
+
+    private void addRectangle() {
+        try {
+            double length = Double.parseDouble(inputLength.getText());
+            double width = Double.parseDouble(inputWidth.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Rectangle(length, width, price)); // add rectangle to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addParallelogram() {
+        try {
+            double base = Double.parseDouble(inputBase.getText());
+            double height = Double.parseDouble(inputHeight.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Parallelogram(base, height, price)); // add parallelogram to the list, same idea
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addTriangle() {
+        try {
+            double base = Double.parseDouble(inputBase.getText());
+            double height = Double.parseDouble(inputHeight.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Triangle(base, height, price)); // add triangle to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addCircle() {
+        try {
+            double radius = Double.parseDouble(inputRadius.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Circle(radius, price)); // add circle to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addDonut() {
+        try {
+            double outerRadius = Double.parseDouble(inputOuterRadius.getText());
+            double innerRadius = Double.parseDouble(inputInnerRadius.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Donut(outerRadius, innerRadius, price)); // add donut to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addHexagon() {
+        try {
+            double side = Double.parseDouble(inputSide.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Hexagon(side, price)); // add hexagon to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void addRhombus() {
+        try {
+            double diagonal1 = Double.parseDouble(inputDiagonal1.getText());
+            double diagonal2 = Double.parseDouble(inputDiagonal2.getText());
+            double price = Double.parseDouble(inputPrice.getText());
+            shapes.add(new Rhombus(diagonal1, diagonal2, price)); // add rhombus to the list
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter valid numeric values."); // handle invalid input
+        }
+    }
+
+    private void showShapes() {
+        shapeListArea.setText("");
+        if (shapes.isEmpty()) {
+            shapeListArea.append("no shapes available.\n"); // display message if no shapes
+        } else {
+            for (Shape shape : shapes) {
+                shapeListArea.append(shape.toString() + "\n"); // display each shape
             }
-        });
-
-        setVisible(true);
-    }
-    
-    /**
-     * Creates a JLabel and a JCheckBox, arranges them on the screen, and returns the JCheckBox.
-     *
-     * @param labelText the text to display on the JLabel.
-     * @param x the x position of the label.
-     * @param y the y position of the label.
-     * @return the created {@code JCheckBox}, which is positioned next to the label.
-     * @see JLabel
-     * @see JCheckBox
-     */
-    private JCheckBox createElements(String labelText, int x, int y) {
-        JCheckBox checkBox = new JCheckBox(); // create check box
-        checkBox.setBounds(x, y, 20, 20);
-        checkBox.setBackground(textBackgroudColor);
-        add(checkBox);
-
-        JLabel label = new JLabel(labelText); // create label
-        label.setBounds(x + 40, y, 130, 20);
-        label.setFont(font);
-        add(label);
-
-        return checkBox; // return the created check box
+        }
     }
 
-    /**
-     * Creates a JTextField, arranges them on screen, and returns string containing both JTextFields.
-     * The width of the text fields are 60. 
-     * The second text field is 10 units to the right.
-     * 
-     * @param x the x position of the 1st text field
-     * @param y the y position of the 1st text field
-     * @return the created {@code String} containing {@code textfield1} and {@code textField2}
-     * @see JTextField
-     */
-    private String createElements(int x, int y){
-        JTextField textField1 = new JTextField(); // create text field
-        textField1.setBounds(x, y, 60, 20);
-        textField1.setFont(font);
-        textField1.setBackground(textBackgroudColor);
-        add(textField1);
-        JTextField textField2 = new JTextField(); // create text field
-        textField2.setBounds(x+70, y, 60, 20);
-        textField2.setFont(font);
-        textField2.setBackground(textBackgroudColor);
-        add(textField2);
-
-        String textFields = textField1.getText() + "/" + textField2.getText();
-        System.out.println(textFields);
-        return textFields; // return the created text fields
+    private void clearShapes() {
+        shapes.clear();
+        shapeListArea.setText("");
+        JOptionPane.showMessageDialog(this, "all shapes cleared."); // clear shapes and display message
     }
 
-    /**
-     * <p>
-     * {@link App#selectAllOrNoneFunction(boolean) This function} checks for true or false from which JButton pressed.
-     * This method is called when {@link JButton#addActionListener(java.awt.event.ActionListener) an ActionListener} is added to the button.
-     * </p>
-     * @param onOrOff boolean for both buttons, sets checkbox as false or true related to which button pressed
-     */
-    private void selectAllOrNoneFunction(boolean onOrOff){
-        rectangle.setSelected(onOrOff);
-        square.setSelected(onOrOff);
-        triangle.setSelected(onOrOff);
-        circle.setSelected(onOrOff);
-        doughnut.setSelected(onOrOff);
-        hexagon.setSelected(onOrOff);
-        parallelogram.setSelected(onOrOff);
+    private void calculateTotalCost() {
+        try {
+            double requiredArea = Double.parseDouble(inputArea.getText());
+            double totalArea = 0;
+            for (Shape shape : shapes) {
+                totalArea += shape.calculateArea(); // calculate total area
+            }
+            double totalCost = 0;
+            for (Shape shape : shapes) {
+                totalCost += shape.calculatePrice(); // calculate total cost
+            }
+            if (totalArea > requiredArea) {
+                JOptionPane.showMessageDialog(this, "total area is greater than required. remove some tiles."); // handle excess area
+            } else if (totalArea < requiredArea) {
+                JOptionPane.showMessageDialog(this, "total area is less than required. add more tiles."); // handle insufficient area
+            } else {
+                JOptionPane.showMessageDialog(this, "total area matches the required area. total cost: $" + totalCost); // display total cost, final result
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "please enter a valid required area."); // handle invalid input
+        }
     }
 
-    public static void main(String[] args){
-        new App(); // create and display a new instance of the app class
+    public static void main(String[] args) {
+        App app = new App();
+        app.setVisible(true); // show the application
     }
 }

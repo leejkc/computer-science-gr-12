@@ -1,11 +1,23 @@
 package U2A2_LeeCook;
 
-public class Rectangle extends Shape{
-    @Override
-    public double area() {
-        return length*width;
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width, double pricePerUnit) {
+        this.length = length;
+        this.width = width;
+        this.pricePerUnit = pricePerUnit;
+        this.area = calculateArea();
     }
-    Rectangle(double price, double length, double width){
-        super(price, length, width);
+
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Length: " + length + ", Width: " + width;
     }
 }

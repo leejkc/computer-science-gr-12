@@ -1,0 +1,77 @@
+' this is a plant uml file! if you have plantUML installed, press alt+d to show preview.
+' otherwise, i included a png file :)
+@startuml Tile Calculator UML
+
+' Abstract class Shape
+abstract class Shape {
+  - double pricePerUnit
+  - double area
+  + double calculatePrice()
+  + String toString()
+  {abstract} + double calculateArea()
+}
+
+' Concrete class Rectangle
+class Rectangle {
+  - double length
+  - double width
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Parallelogram
+class Parallelogram {
+  - double base
+  - double height
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Triangle
+class Triangle {
+  - double base
+  - double height
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Circle
+class Circle {
+  - double radius
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Donut
+class Donut {
+  - double outerRadius
+  - double innerRadius
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Hexagon
+class Hexagon {
+  - double side
+  + double calculateArea()
+  + String toString()
+}
+
+' Concrete class Rhombus
+class Rhombus {
+  - double diagonal1
+  - double diagonal2
+  + double calculateArea()
+  + String toString()
+}
+
+' Inheritance relationships
+Shape <|-- Rectangle
+Shape <|-- Parallelogram
+Shape <|-- Triangle
+Shape <|-- Circle
+Shape <|-- Donut
+Shape <|-- Hexagon
+Shape <|-- Rhombus
+
+@enduml

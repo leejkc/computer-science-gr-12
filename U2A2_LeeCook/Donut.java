@@ -1,11 +1,23 @@
 package U2A2_LeeCook;
 
-public class Donut extends Shape{
-    @Override
-    public double area() {
-        return (3.14*Math.pow(width, 2))-(3.14*(Math.pow(width, 2)/3)); // subtract a smaller circle proportionate to the bigger cirlce's diameter to make a donut
+class Donut extends Shape {
+    private double outerRadius;
+    private double innerRadius;
+
+    public Donut(double outerRadius, double innerRadius, double pricePerUnit) {
+        this.outerRadius = outerRadius;
+        this.innerRadius = innerRadius;
+        this.pricePerUnit = pricePerUnit;
+        this.area = calculateArea();
     }
-    Donut(double price, double length, double width){
-        super(price, length, width);
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * (outerRadius * outerRadius - innerRadius * innerRadius);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Outer Radius: " + outerRadius + ", Inner Radius: " + innerRadius;
     }
 }

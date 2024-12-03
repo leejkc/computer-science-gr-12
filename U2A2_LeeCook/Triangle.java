@@ -1,11 +1,23 @@
 package U2A2_LeeCook;
 
-public class Triangle extends Shape{
-    @Override
-    public double area() {
-        return (length*width)/2;
+class Triangle extends Shape {
+    private double base;
+    private double height;
+
+    public Triangle(double base, double height, double pricePerUnit) {
+        this.base = base;
+        this.height = height;
+        this.pricePerUnit = pricePerUnit;
+        this.area = calculateArea();
     }
-    Triangle(double price, double length, double width){
-        super(price, length, width);
+
+    @Override
+    public double calculateArea() {
+        return 0.5 * base * height;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Base: " + base + ", Height: " + height;
     }
 }
