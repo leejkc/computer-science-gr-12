@@ -1,10 +1,6 @@
 package U2A3_LeeCook;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -13,9 +9,8 @@ public class App extends JFrame{
     final java.awt.Font font = new java.awt.Font("Consolas", java.awt.Font.BOLD, 15); // font settings
     final java.awt.Color textBackgroudColor = new java.awt.Color(213, 234, 245); // background color for text fields
 
-    final JTextField name, cat, am, minimumAM, vendor, markup, discount; // cat means catagory, am means amount
+    final JTextField name, cat, am, minimumAm, vendor, markup, discount; // cat means catagory, am means amount
 
-    Path filePath = Paths.get("U2A3_LeeCook/inventory.txt"); // path to the inventory file.
     App(){
         setSize(600,600); // set window size
         setTitle("Inventory Manager"); // set window title
@@ -24,13 +19,27 @@ public class App extends JFrame{
         getContentPane().setBackground(new java.awt.Color(125, 180, 209)); // background color of the content pane
         setLayout(null); // absolute positioning layout
 
+        JLabel header = new JLabel("Inventory Manager");
+        header.setBounds(30, 10, 300, 40);
+        header.setFont(new java.awt.Font("Consolas", java.awt.Font.BOLD, 30));
+        add(header);
+
         name = createLabelAndTextField("Name: ", 30, 60);
         cat = createLabelAndTextField("Catagory: ", 30, 90);
         am = createLabelAndTextField("Amount: ", 30, 120);
-        minimumAM = createLabelAndTextField("Minimum: ", 30, 150);
+        minimumAm = createLabelAndTextField("Minimum: ", 30, 150);
         vendor = createLabelAndTextField("Vendor: ", 30, 180);
         markup = createLabelAndTextField("Markup: ", 30, 210);
         discount = createLabelAndTextField("Discount: ", 30, 240);
+        
+        JButton submit = new JButton("Submit Fields");
+        submit.setBounds(30, 270, 250, 20);
+        submit.setFont(font);
+        submit.setBackground(textBackgroudColor);
+        add(submit);
+        submit.addActionListener(_->{
+            ItemData.insertData(name.getText(), cat.getText(), am.getText(), minimumAm.getText(), vendor.getText(), markup.getText(), discount.getText());
+        });
 
         setVisible(true);
     }
@@ -47,7 +56,6 @@ public class App extends JFrame{
         JLabel label = new JLabel(labelText); // create label
         label.setBounds(x, y, 130, 20); 
         label.setFont(font);
-        label.setBackground(textBackgroudColor); 
         add(label);
         
         JTextField textField = new JTextField(); // create text field
