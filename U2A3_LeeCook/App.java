@@ -78,7 +78,7 @@ public class App extends JFrame{
         idButton.setFont(font);
         idButton.setBackground(textBackgroudColor);
         add(idButton);
-        idButton.addActionListener(unused->{
+        idButton.addActionListener(_->{
             if (idButton.getText() == "Search by ID"){
                 idLabel.setVisible(true);
                 id.setVisible(true);
@@ -104,7 +104,7 @@ public class App extends JFrame{
         selectOption.setBackground(textBackgroudColor);
         add(selectOption);
         selectOption.setVisible(false);
-        selectOption.addActionListener(unused->{
+        selectOption.addActionListener(_->{
             int i = combobox.getSelectedIndex();
             if (i == -1){
                 JOptionPane.showMessageDialog(null, "No option selected!\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -133,7 +133,7 @@ public class App extends JFrame{
         submit.setFont(font);
         submit.setBackground(textBackgroudColor);
         add(submit);
-        submit.addActionListener(unused->{
+        submit.addActionListener(_->{
             combobox.setVisible(ItemData.checkBlank(name.getText(), cat.getText().toUpperCase(), id.getText()));
             selectOption.setVisible(ItemData.checkBlank(name.getText(), cat.getText().toUpperCase(), id.getText()));
             // makes dropdown and button visible if all textfields are not empty
@@ -148,7 +148,7 @@ public class App extends JFrame{
         helpButton.setFont(font);
         helpButton.setBackground(textBackgroudColor);
         add(helpButton);
-        helpButton.addActionListener(unused->{
+        helpButton.addActionListener(_->{
             Help.newWindow();
         });
 

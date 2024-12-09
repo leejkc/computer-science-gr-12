@@ -102,8 +102,8 @@ public class Help extends JFrame {
         prevPage = new JButton("Previous Page");
         nextPage = new JButton("Next Page");
 
-        prevPage.addActionListener(e -> showPreviousPage());
-        nextPage.addActionListener(e -> showNextPage());
+        prevPage.addActionListener(_ -> showPreviousPage());
+        nextPage.addActionListener(_ -> showNextPage());
 
         buttonPanel.add(prevPage);
         buttonPanel.add(nextPage);
