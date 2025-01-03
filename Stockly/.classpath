@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/> <!-- source dir -->
+    <classpathentry kind="lib" path="lib/flatlaf-3.5.4.jar"/> <!-- path to  FlatLaf JAR -->
+    <classpathentry kind="output" path="bin"/> <!-- output dir for compiled classes -->
+</classpath>

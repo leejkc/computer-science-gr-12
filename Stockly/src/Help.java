@@ -1,4 +1,4 @@
-package Stockly;
+package Stockly.src;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -125,15 +125,11 @@ public class Help extends JFrame {
     }
 
     private void showNextPage() {
-        if (currentPage < pages.length - 1) {
-            showPage(currentPage + 1);
-        }
+        if (currentPage < pages.length - 1) showPage(currentPage + 1);
     }
 
     private void showPreviousPage() {
-        if (currentPage > 0) {
-            showPage(currentPage - 1);
-        }
+        if (currentPage > 0) showPage(currentPage - 1);
     }
 
     private void showPage(int pageIndex) {

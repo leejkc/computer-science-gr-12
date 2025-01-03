@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "Stockly.src.App",
+            "classPaths": [
+                "${workspaceFolder}/Stockly/src",
+                "${workspaceFolder}/Stockly/lib/flatlaf-3.5.4.jar"
+            ]
+        }
+    ]
+}

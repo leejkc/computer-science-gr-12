@@ -1,5 +1,4 @@
 {
-    "java.debug.settings.onBuildFailureProceed": true,
     "java.project.referencedLibraries": [
         "lib/flatlaf-3.5.4.jar"
     ]
