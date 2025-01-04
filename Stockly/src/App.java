@@ -1,5 +1,7 @@
 package Stockly.src;
 
+import com.formdev.flatlaf.FlatLaf;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -20,8 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
-
-import com.formdev.flatlaf.FlatLightLaf;
 
 public class App extends JFrame{
     private static final int BUTTONS_PER_PAGE = 30; // constant of how many items load per page
