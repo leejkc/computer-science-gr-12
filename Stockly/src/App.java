@@ -1,14 +1,8 @@
 package Stockly.src;
 
-import com.formdev.flatlaf.FlatLaf;
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.awt.event.ItemListener;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+
+import U2A3_LeeCook.ItemData;
 
 public class App extends JFrame{
     private static final int BUTTONS_PER_PAGE = 30; // constant of how many items load per page
@@ -63,7 +59,26 @@ public class App extends JFrame{
         // TODO: add button listener
         layer2.add(searchButton);
         String[] sortComboBoxStuffing = {"Alphabetical (A -> Z)", "Alphabetical (Z -> A)", "Price (High -> Low)", "Price (Low -> High)", "Current Stock (High -> Low)", "Current Stock (Low -> High)"};
-        JComboBox sortComboBox = new JComboBox<>(sortComboBoxStuffing);
+        JComboBox<String> sortComboBox = new JComboBox<>(sortComboBoxStuffing);
+        sortComboBox.addItemListener(_ -> { // item listener listens for when the combobox is changed (note: does not update on start, only after change)
+            int selectedSort = sortComboBox.getSelectedIndex();
+            if (selectedSort == -1){
+                JOptionPane.showMessageDialog(null, "No option selected!\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (selectedSort == 0){
+                JOptionPane.showMessageDialog(null, "0\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (selectedSort == 1){
+                JOptionPane.showMessageDialog(null, "1\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (selectedSort == 2){
+                JOptionPane.showMessageDialog(null, "2\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        });
         layer2.add(sortComboBox);
         JButton editButton = new JButton("EDIT");
         // TODO: add button listener
@@ -91,7 +106,7 @@ public class App extends JFrame{
 
         for (String name : buttons) {
             JButton button = new JButton(name);
-            button.addActionListener(e -> System.out.println(name + " clicked")); // TEMPORARY RESULT PLEASE ADD NEW WINDOW FEATURE
+            button.addActionListener(_ -> System.out.println(name + " clicked")); // TEMPORARY RESULT PLEASE ADD NEW WINDOW FEATURE
             itemButtons.add(button);
             buttonPanel.add(button);
         }
@@ -129,17 +144,7 @@ public class App extends JFrame{
 
     public static void main(String[] args) {
         try {
-            File jarFile = new File("lib/flatlaf-3.5.4.jar");
-            URL jarUrl = jarFile.toURI().toURL();
-            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        
-            if (classLoader instanceof URLClassLoader) {
-                Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class); // reflect to access protected addURL method
-                method.setAccessible(true);
-                method.invoke(classLoader, jarUrl);
-            }
-            
-            FlatLightLaf.setup(); // recommended by third party lib instead of UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();// "handle" possible exeptions
         }
