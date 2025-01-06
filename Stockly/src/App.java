@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
-import U2A3_LeeCook.ItemData;
-
 public class App extends JFrame{
     private static final int BUTTONS_PER_PAGE = 30; // constant of how many items load per page
     private JButton prevPage, nextPage;
@@ -97,12 +95,10 @@ public class App extends JFrame{
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         List<String> buttons = new ArrayList<>();
         
-        // v test buttons
-        buttons.add("temporary item");
+        // test buttons
         for (int i = 1; i <= 100; i++) {
             buttons.add("Item " + i);
         }
-        // ^
 
         for (String name : buttons) {
             JButton button = new JButton(name);
