@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class test extends JFrame {
+public class Test extends JFrame {
     private static final int BUTTONS_PER_PAGE = 30;
     private JButton prevPage, nextPage;
     private int currentPage = 0;
@@ -16,7 +16,7 @@ public class test extends JFrame {
     private JScrollPane scrollPane;
     private List<JButton> itemButtons = new ArrayList<>();
 
-    test() {
+    Test() {
         setSize(900, 700);
         setTitle("Stockly");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +107,7 @@ public class test extends JFrame {
         }
 
         SwingUtilities.invokeLater(() -> {
-            test a = new test();
+            Test a = new Test();
             a.setVisible(true);
         });
     }
