@@ -26,3 +26,5 @@ location - aisle number -> save in txt file
 barcode feature 
 counter to count purchases to be compared by admin and change stock [ 40 (-2) ]
 permission levels 
+
+comment methods using javadoc
