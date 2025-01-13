@@ -7,11 +7,6 @@ search -> new window
     show all similar results
     jump or interpolation for the search 
 
-new pages at bottom
-    display current page
-    next page prev page buttons 
-    display how many items are showing per page (1-30)->(31-71) etc to end and out of total
-
 CHANGE HELP.JAVA FILE TO HAVE CORRECT INSTRUCTIONS
 
 quantity per box 
@@ -25,6 +20,15 @@ accomodate for spelling errors and display percent accuracy (group items?)
 location - aisle number -> save in txt file
 barcode feature 
 counter to count purchases to be compared by admin and change stock [ 40 (-2) ]
+
 permission levels 
+    -> admin 
+        -> can edit, requires sign in.
+        -> encryption and secure sign in
+
+    -> unpaid intern, stocking clerk
+        -> can change temp file needs to be confirmed by admin
+    -> customer 
+        -> online version maybe more organized
 
 comment methods using javadoc
