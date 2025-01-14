@@ -32,3 +32,5 @@ permission levels
         -> online version maybe more organized
 
 comment methods using javadoc
+
+use help class to make other components

@@ -2,7 +2,6 @@ package Stockly.src;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.ItemListener;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,14 +17,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import Stockly.src.components.Window.Help;
+
 public class App extends JFrame{
-    private static final int BUTTONS_PER_PAGE = 30; // constant of how many items load per page
     private JButton prevPage, nextPage;
-    private int currentPage = 0;
     private JScrollPane scrollPane;
+    private JPanel cp, layer0, layer1, layer2, buttonPanel, pageChangePanel;
     private List<JButton> itemButtons = new ArrayList<>();
-    private JPanel buttonPanel;
-    
+    private int pageCounter = 0;
+    private int currentPage = 0;
+
     App(){
         setSize(900, 700);
         setTitle("Stockly");
@@ -34,15 +35,15 @@ public class App extends JFrame{
         setLocationRelativeTo(null); // opens in center of screen
         setLayout(new BorderLayout());
 
-        JPanel cp = new JPanel(); // cp -> contentPane
+        cp = new JPanel(); // cp -> contentPane
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
         
-        JPanel layer0 = new JPanel();
+        layer0 = new JPanel();
         layer0.setLayout(new FlowLayout(FlowLayout.LEFT));
         layer0.add(new JLabel(new ImageIcon("Stockly/src/stockly.png"))); // title image
         cp.add(layer0);
 
-        JPanel layer1 = new JPanel();
+        layer1 = new JPanel();
         layer1.setLayout(new FlowLayout(FlowLayout.RIGHT));
         JButton saveButton = new JButton("SAVE CHANGES");
         // TODO: add button listener
@@ -52,7 +53,7 @@ public class App extends JFrame{
         layer1.add(exitButton);
         cp.add(layer1);
 
-        JPanel layer2 = new JPanel();
+        layer2 = new JPanel();
         layer2.setLayout(new FlowLayout(FlowLayout.RIGHT));
         JButton searchButton = new JButton("SEARCH");
         // TODO: add button listener
@@ -111,14 +112,20 @@ public class App extends JFrame{
         add(scrollPane, BorderLayout.CENTER);
 
         // panel for page change
-        JPanel pageChangePanel = new JPanel();
+        pageChangePanel = new JPanel();
         pageChangePanel.setLayout(new java.awt.FlowLayout());
         prevPage = new JButton("Previous Page");
         nextPage = new JButton("Next Page");
-        prevPage.addActionListener(_ -> {if (currentPage > 0) showPage(currentPage - 1);});
-        nextPage.addActionListener(_ -> {if ((currentPage + 1) * BUTTONS_PER_PAGE < itemButtons.size()) showPage(currentPage + 1);});
+        prevPage.addActionListener(_ -> {
+            pageCounter--;
+            if (currentPage > 0) showPage(currentPage - 1); 
+        });
+        nextPage.addActionListener(_ -> {
+            pageCounter++;
+            if ((currentPage + 1) * Constants.BUTTONS_PER_PAGE < itemButtons.size()) showPage(currentPage + 1); 
+        });
         pageChangePanel.add(prevPage);
-        pageChangePanel.add(new JLabel("Current Page: "+currentPage));
+        pageChangePanel.add(new JLabel("Current Page: "+pageCounter));
         pageChangePanel.add(nextPage);
         add(pageChangePanel, java.awt.BorderLayout.SOUTH); // place buttons at the bottom
 
@@ -127,8 +134,8 @@ public class App extends JFrame{
 
 
     private void showPage(int pageIndex) {
-        int start = pageIndex * BUTTONS_PER_PAGE;
-        int end = Math.min(start + BUTTONS_PER_PAGE, itemButtons.size());
+        int start = pageIndex * Constants.BUTTONS_PER_PAGE;
+        int end = Math.min(start + Constants.BUTTONS_PER_PAGE, itemButtons.size());
         
         for (int i = 0; i < itemButtons.size(); i++) {
             itemButtons.get(i).setVisible(i >= start && i < end);
@@ -180,6 +187,49 @@ public class App extends JFrame{
 
         return result;
     }
+    public static String[] mergeSort(String[] unsortedArr) {
+        // Return array when all data are in their own array
+        if (unsortedArr.length <= 1) {
+            return unsortedArr;
+        }
+    
+        // Split array
+        int middle = unsortedArr.length / 2;
+        String[] leftHalf = Arrays.copyOfRange(unsortedArr, 0, middle);
+        String[] rightHalf = Arrays.copyOfRange(unsortedArr, middle, unsortedArr.length);
+    
+        // Recursively sort both halves
+        String[] sortedLeft = mergeSort(leftHalf);
+        String[] sortedRight = mergeSort(rightHalf);
+    
+        // Merge the sorted halves
+        return merge(sortedLeft, sortedRight);
+    }
+    
+    // Compare and merge array
+    public static String[] merge(String[] left, String[] right) {
+        String[] result = new String[left.length + right.length];
+        int i = 0, j = 0, k = 0;
+    
+        while (i < left.length && j < right.length) {
+            if (left[i].compareTo(right[j]) <= 0) {
+                result[k++] = left[i++];
+            } else {
+                result[k++] = right[j++];
+            }
+        }
+    
+        while (i < left.length) {
+            result[k++] = left[i++];
+        }
+    
+        while (j < right.length) {
+            result[k++] = right[j++];
+        }
+    
+        return result;
+    }
+    
 
     public static void main(String[] args) {
         try {

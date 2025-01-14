@@ -1,4 +1,4 @@
-package Stockly.src;
+package Stockly.src.components.Window;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
