@@ -2,10 +2,11 @@ package Stockly.src;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import Stockly.src.components.Constants;
 import Stockly.src.components.Window.Help;
 
 public class App extends JFrame{
@@ -27,6 +29,7 @@ public class App extends JFrame{
     private List<JButton> itemButtons = new ArrayList<>();
     private int pageCounter = 0;
     private int currentPage = 0;
+    List<String> lines;
 
     App(){
         setSize(900, 700);
@@ -68,7 +71,6 @@ public class App extends JFrame{
                 return;
             }
             if (selectedSort == 0){
-                JOptionPane.showMessageDialog(null, "0\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (selectedSort == 1){
@@ -98,9 +100,13 @@ public class App extends JFrame{
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         List<String> buttons = new ArrayList<>();
         
-        // test buttons
-        for (int i = 1; i <= 100; i++) {
-            buttons.add("Item " + i);
+        try {
+            this.lines = Files.readAllLines(Constants.INVENTORY_PATH);
+        } catch (IOException ioex) {
+            ioex.printStackTrace();
+        }
+        for (String line : lines) {
+            buttons.add(line); 
         }
 
         for (String name : buttons) {
