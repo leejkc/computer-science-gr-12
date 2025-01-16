@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 
 import Stockly.src.components.Constants;
 import Stockly.src.components.Window.Help;
+import Stockly.src.components.MergeSort;
 
 public class App extends JFrame{
     private JButton prevPage, nextPage;
@@ -29,6 +30,7 @@ public class App extends JFrame{
     private List<JButton> itemButtons = new ArrayList<>();
     private int pageCounter = 0;
     private int currentPage = 0;
+    private String[] toSort;
     List<String> lines;
 
     App(){
@@ -62,7 +64,7 @@ public class App extends JFrame{
         JButton searchButton = new JButton("SEARCH");
         // TODO: add button listener
         layer2.add(searchButton);
-        String[] sortComboBoxStuffing = {"Alphabetical (A -> Z)", "Alphabetical (Z -> A)", "Price (High -> Low)", "Price (Low -> High)", "Current Stock (High -> Low)", "Current Stock (Low -> High)"};
+        String[] sortComboBoxStuffing = {"", "Alphabetical (A -> Z)", "Alphabetical (Z -> A)", "Price (High -> Low)", "Price (Low -> High)", "Current Stock (High -> Low)", "Current Stock (Low -> High)"};
         JComboBox<String> sortComboBox = new JComboBox<>(sortComboBoxStuffing);
         sortComboBox.addItemListener(_ -> { // item listener listens for when the combobox is changed (note: does not update on start, only after change)
             int selectedSort = sortComboBox.getSelectedIndex();
@@ -70,16 +72,12 @@ public class App extends JFrame{
                 JOptionPane.showMessageDialog(null, "No option selected!\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (selectedSort == 0){
-                return;
-            }
+            if (selectedSort == 0) {}
             if (selectedSort == 1){
-                JOptionPane.showMessageDialog(null, "1\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (selectedSort == 2){
-                JOptionPane.showMessageDialog(null, "2\nPlease select a option from the dropdown.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                this.toSort = lines.toArray(new String[0]);
+                this.lines = List.of(MergeSort.mergeSort(toSort));
+                buttonPanel.revalidate();
+                buttonPanel.repaint();
             }
         });
         layer2.add(sortComboBox);
@@ -151,50 +149,6 @@ public class App extends JFrame{
         currentPage = pageIndex;
         buttonPanel.revalidate();
         buttonPanel.repaint();
-    }
-
-    public static <T extends Comparable<T>> T[] mergeSort(T[] unsortedArr) {
-        // Return array when all data are in their own array
-        if (unsortedArr.length <= 1) {
-            return unsortedArr;
-        }
-
-        // Split array
-        int middle = unsortedArr.length / 2;
-        T[] leftHalf = Arrays.copyOfRange(unsortedArr, 0, middle);
-        T[] rightHalf = Arrays.copyOfRange(unsortedArr, middle, unsortedArr.length);
-
-        // Recursively sort both halves
-        T[] sortedLeft = mergeSort(leftHalf);
-        T[] sortedRight = mergeSort(rightHalf);
-
-        // Merge the sorted halves
-        return merge(sortedLeft, sortedRight);
-    }
-
-    // Compare and merge array
-    @SuppressWarnings("unchecked")
-    public static <T extends Comparable<T>> T[] merge(T[] left, T[] right) {
-        T[] result = (T[]) new Comparable[left.length + right.length];
-        int i = 0, j = 0, k = 0;
-
-        while (i < left.length && j < right.length) {
-            if (left[i].compareTo(right[j]) <= 0) {
-                result[k++] = left[i++];
-            } else {
-                result[k++] = right[j++];
-            }
-        }
-
-        while (i < left.length) {
-            result[k++] = left[i++];
-        }
-
-        while (j < right.length) {
-            result[k++] = right[j++];
-        }
-
-        return result;
     }
     
 
