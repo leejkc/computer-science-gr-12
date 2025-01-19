@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -271,7 +273,7 @@ public class App extends JFrame{
         for (String line : lines) {
             String itemName = line.split(",")[0];
             JButton button = new JButton(itemName);
-            button.addActionListener(_ -> System.out.println(itemName + " clicked"));
+            button.addActionListener(_ -> Item.readFromFile(extractText(itemName), signedIn));
             itemButtons.add(button);
             buttonPanel.add(button);
         }
@@ -335,6 +337,16 @@ public class App extends JFrame{
         layer1.add(createButton);
 
         layer1.remove(signInButton);
+    }
+
+    
+    public static String extractText(String input) {
+        Pattern pattern = Pattern.compile("\\(([^)]+)\\)");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
     }
     
 
