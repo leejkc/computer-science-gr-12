@@ -4,31 +4,32 @@ import java.util.Arrays;
 
 public class MergeSort {
 
-    public static int[] mergeSort(int[] unsortedArr) {
-        //return array when all data are in it own array
+    public static String[] mergeSortByNumber(String[] unsortedArr) {
+        // Return array when all data are in their own array
         if (unsortedArr.length <= 1) {
             return unsortedArr;
         }
 
-        //split array
+        // Split array
         int middle = unsortedArr.length / 2;
-        int[] leftHalf = Arrays.copyOfRange(unsortedArr, 0, middle);
-        int[] rightHalf = Arrays.copyOfRange(unsortedArr, middle, unsortedArr.length);
+        String[] leftHalf = Arrays.copyOfRange(unsortedArr, 0, middle);
+        String[] rightHalf = Arrays.copyOfRange(unsortedArr, middle, unsortedArr.length);
 
-        //move to sort method
-        int[] sortedLeft = mergeSort(leftHalf);
-        int[] sortedRight = mergeSort(rightHalf);
+        // Recursively sort both halves
+        String[] sortedLeft = mergeSortByNumber(leftHalf);
+        String[] sortedRight = mergeSortByNumber(rightHalf);
 
-        return merge(sortedLeft, sortedRight);
+        // Merge the sorted halves
+        return mergeByNumber(sortedLeft, sortedRight);
     }
 
-    //compare and merge array
-    public static int[] merge(int[] left, int[] right) {
-        int[] result = new int[left.length + right.length];
+    // Compare and merge array by number
+    public static String[] mergeByNumber(String[] left, String[] right) {
+        String[] result = new String[left.length + right.length];
         int i = 0, j = 0, k = 0;
 
         while (i < left.length && j < right.length) {
-            if (left[i] < right[j]) {
+            if (extractNumber(left[i]) <= extractNumber(right[j])) {
                 result[k++] = left[i++];
             } else {
                 result[k++] = right[j++];
@@ -44,6 +45,15 @@ public class MergeSort {
         }
 
         return result;
+    }
+
+    // Extract number from string
+    private static double extractNumber(String str) {
+        String numberStr = str.replaceAll("[^\\d.]", "");
+        if (numberStr.isEmpty()) {
+            return 0;
+        }
+        return Double.parseDouble(numberStr);
     }
 
 

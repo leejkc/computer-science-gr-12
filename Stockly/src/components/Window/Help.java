@@ -41,61 +41,58 @@ public class Help extends JFrame {
         }
 
         // Page 1
-        pages[0].setText("Welcome to the Inventory Manager!\n\n" +
-                         "This tool helps you manage your inventory. Follow the steps below to add, update, or remove items from your inventory.\n\n" +
+        pages[0].setText("Welcome to Stockly!\n\n" +
+                         "Stockly is an inventory management tool that allows you to view and manage products in your inventory.\n\n" +
+                         "This help guide will walk you through the different features and how to use the application effectively.\n\n" +
                          "Click *Next Page* to get started!");
 
         // Page 2
-        pages[1].setText("Step 1: Enter Item Details\n\n" +
-                         "To add an item to your inventory, you'll need to fill out a form with the following details:\n\n" +
-                         "- *Item Name*: Enter the name of the product.\n" +
-                         "- *Category*: Enter the category of the product (e.g., Fruit, Meat).\n" +
-                         "- *Amount in Stock*: How many units you have in stock.\n" +
-                         "- *Minimum Stock*: The minimum number of items you want to keep in stock.\n" +
-                         "- *Vendor Price*: The cost price of the item.\n" +
-                         "- *Markup %*: The percentage you want to add on top of the vendor price.\n" +
-                         "- *Discount %*: The discount you want to offer.\n\n" +
-                         "Click *Next Page* when you're ready!");
+        pages[1].setText("Step 1: Logging In\n\n" +
+                         "To access your inventory, you need to log in.\n\n" +
+                         "- Click the *LOGIN* button at the top-right of the screen.\n" +
+                         "- Enter your credentials (if you don't have an account, create one by clicking the *CREATE NEW ACCOUNT* button).\n" +
+                         "- If you're already signed in, your account details will be displayed on the screen.\n\n" +
+                         "Click *Next Page* to learn about searching for items in your inventory.");
 
         // Page 3
-        pages[2].setText("Step 2: Submit the Item\n\n" +
-                         "Once you've filled out the item details, click the *Submit Fields* button.\n\n" +
-                         "After submitting, you'll see a dropdown with options:\n\n" +
-                         "- *Search in File*: Look for an item already in your inventory.\n" +
-                         "- *Write to File*: Save the new item to your inventory file.\n" +
-                         "- *Remove from File*: Delete an item from your inventory.\n\n" +
-                         "Click *Next Page* to continue.");
+        pages[2].setText("Step 2: Searching for Items\n\n" +
+                         "You can search for specific products in your inventory by using the search bar.\n\n" +
+                         "- Type the name of the item you're looking for in the search bar at the top.\n" +
+                         "- The list of products will be filtered to show only those that match your search.\n" +
+                         "- You can also use the search button to trigger the search manually.\n\n" +
+                         "Click *Next Page* to learn how to sort items in your inventory.");
 
         // Page 4
-        pages[3].setText("Step 3: Search for an Item\n\n" +
-                         "If you want to check if an item already exists in the inventory:\n\n" +
-                         "- Use the *Search in File* option.\n" +
-                         "- Enter the item id, name, or category to find matching items.\n" +
-                         "- Machine will always search for category first.\n" +
-                         "- If no match is found, you can add the item using the *Write to File* option.\n\n" +
-                         "Click *Next Page* to learn about writing to the file!");
+        pages[3].setText("Step 3: Sorting Your Inventory\n\n" +
+                         "Stockly allows you to sort your inventory to make finding items easier.\n\n" +
+                         "- Click the *Sort By* dropdown to choose how you want your inventory sorted.\n" +
+                         "- You can sort by alphabetical order (A -> Z or Z -> A), by price (high to low or low to high), or by the current stock (high to low or low to high).\n" +
+                         "- Once sorted, your inventory will automatically update to show the sorted list of items.\n\n" +
+                         "Click *Next Page* to learn about viewing item details.");
 
         // Page 5
-        pages[4].setText("Step 4: Write to the File\n\n" +
-                         "Once your item is submitted, you can save it to your inventory file.\n\n" +
-                         "- Use the *Write to File* option to save the item.\n" +
-                         "- This will store the item in the inventory system, allowing you to track it.\n\n" +
-                         "- Make sure to fill in all of the text fields to write!\n\n" +
-                         "Click *Next Page* for removing items from the inventory!");
+        pages[4].setText("Step 4: Viewing Item Details\n\n" +
+                         "Once you have found the item you're looking for, you can view more detailed information about it.\n\n" +
+                         "- Click on any product button to open a detailed view of that item.\n" +
+                         "- You'll see information such as the item name, description, current stock, price, and other relevant details.\n" +
+                         "- If you're signed in, you may also have options to update or remove items from the inventory.\n\n" +
+                         "Click *Next Page* to learn how to navigate through pages of your inventory.");
 
         // Page 6
-        pages[5].setText("Step 5: Remove an Item\n\n" +
-                         "To remove an item from the inventory:\n\n" +
-                         "- Use the *Remove from File* option.\n" +
-                         "- Enter the name  of the item you wish to delete.\n" +
-                         "- Once found, the item will be deleted from the system.\n\n" +
-                         "Click *Next Page* for important tips and guidelines!");
+        pages[5].setText("Step 5: Navigating Through Pages\n\n" +
+                         "If your inventory is large, it will be spread across multiple pages.\n\n" +
+                         "- Use the *Next Page* and *Previous Page* buttons to navigate through the pages.\n" +
+                         "- The *Current Page* label will show you which page you're on.\n" +
+                         "- You can always return to the first page by adjusting the page controls.\n\n" +
+                         "Click *Next Page* for additional tips and troubleshooting!");
 
         // Page 7
         pages[6].setText("Important Tips:\n\n" +
-                         "- Always ensure that all fields are filled out correctly before submitting.\n" +
-                         "- If you're unsure about any field, refer back to this help guide.\n" +
-                         "- You can access this help section at any time by clicking the *Help!* button. :)");
+                         "- Make sure to log in before trying to update or manage items in your inventory.\n" +
+                         "- If you don't find the item you're looking for, try searching with different keywords or check the spelling.\n" +
+                         "- Remember to log out when you're finished managing your inventory for security.\n\n" +
+                         "You can access this help guide at any time by clicking the *HELP* button located at the top of the screen.\n\n" +
+                         "Happy managing your inventory with Stockly!");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new java.awt.FlowLayout());

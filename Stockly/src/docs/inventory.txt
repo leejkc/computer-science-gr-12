@@ -1,190 +1,100 @@
-glass
-pants
-toe ring
-nail clippers
-lamp shade
-knife
-tomato
-watch
-purse
-ring
-spoon
-camera
-sand paper
-needle
-canvas
-helmet
-credit card
-packing peanuts
-beef
-sun glasses
-shampoo
-drill press
-candy wrapper
-bed
-car
-shoe lace
-lotion
-stockings
-ice cube tray
-greeting card
-rug
-cat
-chalk
-blanket
-apple
-carrots
-bookmark
-bracelet
-phone
-sofa
-tv
-cinder block
-wagon
-bag
-wallet
-water bottle
-speakers
-desk
-soy sauce packet
-leg warmers
-controller
-video games
-bottle cap
-pen
-flowers
-clock
-spring
-tissue box
-deodorant
-soda can
-monitor
-conditioner
-cell phone
-sketch pad
-headphones
-USB drive
-perfume
-floor
-shawl
-house
-soap
-street lights
-fridge
-sailboat
-key chain
-book
-radio
-towel
-drawer
-newspaper
-sharpie
-shovel
-keyboard
-window
-brocolli
-ipod
-checkbook
-nail file
-model car
-hanger
-rubber duck
-food
-plate
-thread
-hair tie
-seat belt
-shoes
-piano
-rusty nail
-twister
-balloon
-coasters
-cup
-sponge
-stop sign
-tree
-television
-sticky note
-blouse
-outlet
-chair
-keys
-box
-plastic fork
-CD
-shirt
-mouse pad
-lace
-bottle
-door
-milk
-white out
-money
-remote
-eye liner
-slipper
-magnet
-thermometer
-toilet
-boom box
-button
-candle
-toothbrush
-lip gloss
-glasses
-chapter book
-sandal
-socks
-paper
-paint brush
-toothpaste
-mirror
-bread
-hair brush
-puddle
-table
-washing machine
-mop
-cookie jar
-twezzers
-picture frame
-flag
-clamp
-air freshener
-teddies
-buckle
-cork
-face wash
-vase
-chocolate
-thermostat
-pool stick
-bowl
-scotch tape
-glow stick
-rubber band
-truck
-pencil
-lamp
-clothes
-clay pot
-grid paper
-zipper
-pillow
-photo album
-tooth picks
-tire swing
-computer
-bananas
-playing card
-doll
-fork
-eraser
-fake flowers
-bow
-charger
-sidewalk
-couch
-mp3 player
-screw
+Eggs
+Milk
+Bread
+Butter
+Bananas
+Apples
+Tomatoes
+Spinach
+Chicken breasts
+Ground beef
+Rice
+Pasta
+Flour
+Sugar
+Salt
+Pepper
+Olive oil
+Vinegar
+Baking soda
+Toothpaste
+Toilet paper
+Paper towels
+Dish soap
+Sponges
+Trash bags
+Laundry detergent
+Fabric softener
+Shampoo
+Conditioner
+Body wash
+Hand soap
+Cleaning wipes
+All-purpose cleaner
+Window cleaner
+Mops
+Brooms
+Vacuum cleaner
+Light bulbs
+Extension cords
+Batteries
+Trash cans
+Ziploc bags
+Aluminum foil
+Plastic wrap
+Coffee
+Tea
+Honey
+Jam
+Peanut butter
+Cereal
+Granola bars
+Frozen vegetables
+Frozen pizza
+Ice cream
+Chips
+Crackers
+Salsa
+Hot sauce
+Soy sauce
+Canned beans
+Canned tomatoes
+Canned tuna
+Soup
+Pudding cups
+Oatmeal
+Coffee filters
+Spaghetti sauce
+Tortillas
+Cheese
+Yogurt
+Sour cream
+Mayonnaise
+Mustard
+Ketchup
+Pickles
+Garlic
+Onion
+Bell peppers
+Carrots
+Cucumbers
+Lettuce
+Mushrooms
+Sweet potatoes
+Potatoes
+Oranges
+Lemons
+Strawberries
+Blueberries
+Avocados
+Grapes
+Pineapple
+Watermelon
+Frozen berries
+Canned corn
+Canned pineapple
+Spices (e.g., cumin, paprika)
+Baking powder
+Vanilla extract
+Paper napkins
+Laundry baskets
