@@ -1,0 +1,4 @@
+Item: Apples
+Description: 
+Price: 6.7
+Stock: 8

@@ -114,7 +114,7 @@ public class App extends JFrame{
         layer2.add(searchField);
 
         layer2.add(searchButton);
-        String[] sortComboBoxStuffing = {"Sort By:", "Alphabetical (A -> Z)", "Alphabetical (Z -> A)", "Price (High -> Low)", "Price (Low -> High)", "Current Stock (High -> Low)", "Current Stock (Low -> High)"};
+        String[] sortComboBoxStuffing = {"Sort By:", "Alphabetical (A -> Z)", "Alphabetical (Z -> A)", "Price (Low -> High)", "Price (High -> Low)", "Current Stock (Low -> High)", "Current Stock (High -> Low)"};
         JComboBox<String> sortComboBox = new JComboBox<>(sortComboBoxStuffing);
         sortComboBox.addItemListener(_ -> { // item listener listens for when the combobox is changed (note: does not update on start, only after change)
             int selectedSort = sortComboBox.getSelectedIndex();
@@ -153,13 +153,13 @@ public class App extends JFrame{
                 refreshButtonPanel();
                 showPage(0);
                 break;
-            case 3:  // Price (High -> Low)
+            case 3:  // Price (Low -> High)
                 this.toSort = Item.getItemDetailsForSorting("Price");
                 this.lines = List.of(MergeSort.mergeSortByNumber(toSort));
                 refreshButtonPanel();
                 showPage(0);
                 break;
-            case 4:  // Price (Low -> High)
+            case 4:  // Price (High -> Low)
                 this.toSort = Item.getItemDetailsForSorting("Price");
                 String[] descendingSortPrice = MergeSort.mergeSortByNumber(toSort);
                 // reverse the sorted array
@@ -172,13 +172,13 @@ public class App extends JFrame{
                 refreshButtonPanel();
                 showPage(0);
                 break;
-            case 5:  // Current Stock (High -> Low)
+            case 5:  // Current Stock (Low -> High)
                 this.toSort = Item.getItemDetailsForSorting("Stock");
                 this.lines = List.of(MergeSort.mergeSortByNumber(toSort));
                 refreshButtonPanel();
                 showPage(0);
                 break;
-            case 6:  // Current Stock (Low -> High)
+            case 6:  // Current Stock (High -> Low)
                 this.toSort = Item.getItemDetailsForSorting("Stock");
                 String[] descendingSortStock = MergeSort.mergeSortByNumber(toSort);
                 // reverse the sorted array

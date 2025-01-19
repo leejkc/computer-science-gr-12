@@ -1,0 +1,4 @@
+Item: Ground beef
+Description: 
+Price: 22
+Stock: 31
